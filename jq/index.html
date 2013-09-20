@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>Sample jQuery</title>
+	<script src="jquery-1.9.1.js"></script>
+</head>
+<body>
+
+<h1>this is h1</h1>
+<form id="f1">
+<input type="text" name="idnum" />
+<input type="text" name="lname" />
+<input type="text" name="fname" />
+</form>
+
+<form id="f2">
+<input type="text" name="idnum" />
+<input type="text" name="lname" />
+<input type="text" name="fname" />
+</form>
+
+<button id="add">Click here</button>
+<button id="edit">Edit</button>
+
+<div id="abc"></div>
+
+<script>
+
+	$(document).ready(function(){
+$("#edit").click(function(){
+	$("#abc").load("page2.html");
+
+});
+
+		$("#add").click(function(){
+			var data=$("#f1").serialize();
+		
+		    
+		    $.ajax({
+    		type: "POST",
+   			url: "some.php",
+    		data: data
+    		}).done(function( msg ) {
+    			$("#abc").append(msg);
+    		}); //close ajax */
+
+    	}); //close button click
+
+	}); //close ready
+
+</script>
+</body>
+</html>

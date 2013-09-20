@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Y4IT Registration</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="demo.css" media="all" />
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+<div class="container">
+			<!-- freshdesignweb top bar -->
+           
+			<header>
+        <img src="firefox.png" width="150" height="150">
+				<h1>Sign Up and you can Win a Firefox Shirt / Mozilla String Bag</h1>
+      </header>       
+      <div  class="form">
+    		<form id="contactform"> 
+    			<p class="contact"><label for="name">Full Name</label></p> 
+    			<input id="name" name="name" placeholder="First and last name" required="" tabindex="1" type="text"> 
+    			 
+    			<p class="contact"><label for="email">Email</label></p> 
+    			<input id="email" name="email" placeholder="example@domain.com" tabindex="2" required="" type="email"> 
+
+          <p class="school"><label for="school">School</label></p> <br>
+          <input id="school" name="school" placeholder="School" required="" tabindex="3" type="text"> <br>
+          
+          <p><label for="gender">Gender</label></p>
+            <select class="select-style gender" name="gender" required tabindex="4">
+            <option value="">i am..</option>
+            <option value="m">Male</option>
+            <option value="f">Female</option>
+          
+            </select><br><br>
+            
+            <p class="contact"><label for="phone">Mobile phone</label></p> 
+            <input id="phone" name="phone" placeholder="09xxxxxxxxx" required="" type="text" tabindex="5"> <br>
+            
+            <input class="buttom" name="submit" type="submit" id="submit" tabindex="6" value="Sign me up!" >   
+            <input class="buttom" name="reset" type="reset" id="reset" tabindex="7" value="Clear form" > 	 
+           
+            
+            <br>
+            &nbsp;
+   </form> 
+</div>      
+</div>
+
+<script>
+
+  $('#contactform').on('submit',function(e) {
+    e.preventDefault();
+   
+  var formData = $('#contactform').serialize();
+
+  $(".form").append('<img src="ajax-loader.gif" id="loader" />');
+$.ajax({
+        type: "POST",
+        url: "insert.php",
+        data: formData
+        }).done(function( msg ) {
+          $("#loader").remove();
+          $(".form").append(msg);
+          //$(".msg").fadeOut(6000);
+         
+
+        }); //close ajax */
+
+
+});
+
+$('#reset').on('click',function(e) {
+   $(".msg").remove();
+   
+ });
+
+</script>
+
+</body>
+</html>
